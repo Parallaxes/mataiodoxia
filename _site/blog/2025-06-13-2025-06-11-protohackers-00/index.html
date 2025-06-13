@@ -37,15 +37,15 @@ Powered by Hydejack v9.2.1 <https://hydejack.com/>
 <meta property="og:locale" content="en" />
 <meta name="description" content="Problem Statement" />
 <meta property="og:description" content="Problem Statement" />
-<link rel="canonical" href="http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/" />
-<meta property="og:url" content="http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/" />
+<link rel="canonical" href="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/" />
+<meta property="og:url" content="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/" />
 <meta property="og:site_name" content="Mataiodoxia" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-06-11T13:04:55-07:00" />
+<meta property="article:published_time" content="2025-06-13T12:56:30-07:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lucas Masterson"},"dateModified":"2025-06-11T13:04:33-07:00","datePublished":"2025-06-11T13:04:55-07:00","description":"Problem Statement","headline":"Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/mataiodoxia_icon.png"},"name":"Lucas Masterson"},"url":"http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lucas Masterson"},"dateModified":"2025-06-11T13:05:42-07:00","datePublished":"2025-06-13T12:56:30-07:00","description":"Problem Statement","headline":"Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/mataiodoxia_icon.png"},"name":"Lucas Masterson"},"url":"http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -77,7 +77,7 @@ Powered by Hydejack v9.2.1 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.2.1" />
 
 
-<link rel="alternate" href="http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/" hreflang="en">
+<link rel="alternate" href="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/" hreflang="en">
 
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Mataiodoxia" />
 
@@ -116,7 +116,7 @@ Powered by Hydejack v9.2.1 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-06-11T13:04:55-07:00',
+    INDEX_KEY: 'index--2025-06-13T12:56:30-07:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -249,7 +249,7 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
       <li>
         
           <span>/</span>
-          <span>2025-06-11-2025-06-11-protohackers-00</span>
+          <span>2025-06-13-2025-06-11-protohackers-00</span>
         
       </li>
     
@@ -277,12 +277,20 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-06-11T13:04:55-07:00">11 Jun 2025</time> in <span>Blog</span> 
+        <time datetime="2025-06-13T12:56:30-07:00">13 Jun 2025</time> in <span>Blog</span> 
       </span>
       
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 11 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-11T13:05:42-07:00">2025-06-11</time>
+            </span>
           
         
       
@@ -334,7 +342,7 @@ Your program will implement the TCP Echo Service from RFC 862.
 
 <p>My updated config:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp/challenges#</span><span class="w"> </span>ufw status verbose
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~#</span><span class="w"> </span>ufw status verbose
 <span class="go">Status: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), disabled (routed)
@@ -344,7 +352,8 @@ To                         Action      From
 --                         ------      ----
 </span><span class="gp">22/tcp                     ALLOW IN    &lt;My IP&gt;</span><span class="w">
 </span><span class="gp">4040/tcp                   ALLOW IN    &lt;My IP&gt;</span><span class="w">
-</span><span class="go">4040/tcp                   ALLOW IN    206.189.113.124
+</span><span class="go">22/tcp                     ALLOW IN    206.189.113.124
+4040/tcp                   ALLOW IN    206.189.113.124
 </span></code></pre></div></div>
 
 <h2 id="solving-the-task">Solving the Task</h2>
@@ -449,7 +458,64 @@ To                         Action      From
 
 <p>And thus, that concludes our code!</p>
 
+<h2 id="test">Test</h2>
+
+<p>Let’s open the server:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>cargo r 1
+<span class="go">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+</span></code></pre></div></div>
+
+<p>Then trying using <code class="language-plaintext highlighter-rouge">netcat</code> to connect to port 4040 + run a few echo tests:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">parallaxis@ASOOS:~$</span><span class="w"> </span>nc 24.144.82.153 4040
+<span class="go">a
+a
+hello
+hello
+^C
+</span><span class="gp">parallaxis@ASOOS:~$</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The echo tests worked!</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>cargo r 1
+<span class="go">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 68.248.128.73:50168, fd: 10 })
+Connection close
+^C
+</span><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Nice! Now let’s run it against the actual testcases.</p>
+
 <h2 id="results">Results</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>./target/release/challenges 1
+<span class="go">Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42500, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42502, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42504, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42506, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42510, fd: 10 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42512, fd: 11 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42514, fd: 12 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42516, fd: 13 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42518, fd: 14 })
+Connection close
+Connection close
+Connection close
+Connection close
+Connection close
+</span></code></pre></div></div>
 
 <p><img src="/assets/img/protohackers-0-results.png" alt="Protohackers Results 0: PASS" /></p>
 

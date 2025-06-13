@@ -45,7 +45,7 @@ Initially, I did have trouble with my first two droplets, which I ended up brick
 My updated config:
 
 ```console
-root@rs-protohackers:~/tcp/challenges# ufw status verbose
+root@rs-protohackers:~# ufw status verbose
 Status: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), disabled (routed)
@@ -55,6 +55,7 @@ To                         Action      From
 --                         ------      ----
 22/tcp                     ALLOW IN    <My IP>
 4040/tcp                   ALLOW IN    <My IP>
+22/tcp                     ALLOW IN    206.189.113.124
 4040/tcp                   ALLOW IN    206.189.113.124
 ```
 
@@ -142,6 +143,68 @@ fn handle_client(mut stream: TcpStream) {
 
 And thus, that concludes our code!
 
+## Test 
+
+Let's open the server:
+
+```console
+root@rs-protohackers:~/tcp# cargo r 1
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+```
+
+Then trying using `netcat` to connect to port 4040 + run a few echo tests:
+
+```console
+parallaxis@ASOOS:~$ nc 24.144.82.153 4040
+a
+a
+hello
+hello
+^C
+parallaxis@ASOOS:~$
+```
+
+The echo tests worked!
+
+```console
+root@rs-protohackers:~/tcp# cargo r 1
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 68.248.128.73:50168, fd: 10 })
+Connection close
+^C
+root@rs-protohackers:~/tcp#
+```
+
+Nice! Now let's run it against the actual testcases.
+
+
 ## Results
+
+```console
+root@rs-protohackers:~/tcp# ./target/release/challenges 1
+Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42500, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42502, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42504, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42506, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42510, fd: 10 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42512, fd: 11 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42514, fd: 12 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42516, fd: 13 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42518, fd: 14 })
+Connection close
+Connection close
+Connection close
+Connection close
+Connection close
+```
 
 ![Protohackers Results 0: PASS](/assets/img/protohackers-0-results.png)

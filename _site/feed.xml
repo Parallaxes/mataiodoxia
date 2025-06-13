@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-06-11T13:04:55-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mataiodoxia</title><subtitle>A personal blog site for code, math, and privacy.
-</subtitle><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><entry><title type="html">Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean</title><link href="http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/" rel="alternate" type="text/html" title="Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean" /><published>2025-06-11T13:04:55-07:00</published><updated>2025-06-11T13:04:33-07:00</updated><id>http://localhost:4000/blog/2025-06-11-protohackers-00</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-11-2025-06-11-protohackers-00/"><![CDATA[<h2 id="problem-statement"><a href="https://protohackers.com/problem/0">Problem Statement</a></h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-06-13T12:56:30-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mataiodoxia</title><subtitle>A personal blog site for code, math, and privacy.
+</subtitle><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><entry><title type="html">Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean</title><link href="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/" rel="alternate" type="text/html" title="Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean" /><published>2025-06-13T12:56:30-07:00</published><updated>2025-06-11T13:05:42-07:00</updated><id>http://localhost:4000/blog/2025-06-11-protohackers-00</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/"><![CDATA[<h2 id="problem-statement"><a href="https://protohackers.com/problem/0">Problem Statement</a></h2>
 
 <blockquote>
 0: Smoke Test
@@ -32,7 +32,7 @@ Your program will implement the TCP Echo Service from RFC 862.
 
 <p>My updated config:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp/challenges#</span><span class="w"> </span>ufw status verbose
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~#</span><span class="w"> </span>ufw status verbose
 <span class="go">Status: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), disabled (routed)
@@ -42,7 +42,8 @@ To                         Action      From
 --                         ------      ----
 </span><span class="gp">22/tcp                     ALLOW IN    &lt;My IP&gt;</span><span class="w">
 </span><span class="gp">4040/tcp                   ALLOW IN    &lt;My IP&gt;</span><span class="w">
-</span><span class="go">4040/tcp                   ALLOW IN    206.189.113.124
+</span><span class="go">22/tcp                     ALLOW IN    206.189.113.124
+4040/tcp                   ALLOW IN    206.189.113.124
 </span></code></pre></div></div>
 
 <h2 id="solving-the-task">Solving the Task</h2>
@@ -147,7 +148,64 @@ To                         Action      From
 
 <p>And thus, that concludes our code!</p>
 
+<h2 id="test">Test</h2>
+
+<p>Let’s open the server:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>cargo r 1
+<span class="go">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+</span></code></pre></div></div>
+
+<p>Then trying using <code class="language-plaintext highlighter-rouge">netcat</code> to connect to port 4040 + run a few echo tests:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">parallaxis@ASOOS:~$</span><span class="w"> </span>nc 24.144.82.153 4040
+<span class="go">a
+a
+hello
+hello
+^C
+</span><span class="gp">parallaxis@ASOOS:~$</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The echo tests worked!</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>cargo r 1
+<span class="go">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/challenges 1`
+Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 68.248.128.73:50168, fd: 10 })
+Connection close
+^C
+</span><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Nice! Now let’s run it against the actual testcases.</p>
+
 <h2 id="results">Results</h2>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">root@rs-protohackers:~/tcp#</span><span class="w"> </span>./target/release/challenges 1
+<span class="go">Port opened on 4040
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42500, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42502, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42504, fd: 10 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42506, fd: 11 })
+Connection close
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42510, fd: 10 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42512, fd: 11 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42514, fd: 12 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42516, fd: 13 })
+Received stream from Ok(TcpStream { addr: 24.144.82.153:4040, peer: 206.189.113.124:42518, fd: 14 })
+Connection close
+Connection close
+Connection close
+Connection close
+Connection close
+</span></code></pre></div></div>
 
 <p><img src="/assets/img/protohackers-0-results.png" alt="Protohackers Results 0: PASS" /></p>]]></content><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><category term="blog" /><summary type="html"><![CDATA[Problem Statement]]></summary></entry><entry><title type="html">How the NSA Probably Backdoored RSA</title><link href="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/" rel="alternate" type="text/html" title="How the NSA Probably Backdoored RSA" /><published>2025-06-09T00:00:00-07:00</published><updated>2025-06-09T14:04:17-07:00</updated><id>http://localhost:4000/blog/nsa-backdoor-rsa</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/"><![CDATA[<blockquote>
   <p>“Even if you’re not doing anything wrong, you are being watched and recorded.” –Edward J. Snowden</p>
