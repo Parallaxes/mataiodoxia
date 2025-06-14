@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.2.1 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Protohackers Challenge 01: Prime Time in Rust | Mataiodoxia</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Protohackers Challenge 01: Prime Time in Rust" />
+<meta name="author" content="Lucas Masterson" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Problem Statement" />
+<meta property="og:description" content="Problem Statement" />
+<link rel="canonical" href="http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/" />
+<meta property="og:url" content="http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/" />
+<meta property="og:site_name" content="Mataiodoxia" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-14T14:25:34-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Protohackers Challenge 01: Prime Time in Rust" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lucas Masterson"},"dateModified":"2025-06-14T14:25:28-07:00","datePublished":"2025-06-14T14:25:34-07:00","description":"Problem Statement","headline":"Protohackers Challenge 01: Prime Time in Rust","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img_icon.png"},"name":"Lucas Masterson"},"url":"http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="color-scheme" content="dark light">
+
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mataiodoxia">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="Mataiodoxia">
+
+<meta name="generator" content="Hydejack v9.2.1" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Mataiodoxia" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+  
+  <link rel="dns-prefetch" href="/assets/bower_components/katex/dist/katex.min.css" id="_katexPreload">
+  <noscript><link rel="stylesheet" href="/assets/bower_components/katex/dist/katex.min.css"></noscript>
+
+
+
+
+
+<script>((r,a)=>{function d(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=a.createElement("script"),e=(n.src=e,t&&d(n,"load",t,{once:!0}),a.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=a.createElement("script");function o(){r._loaded=!0,t&&d(n,"load",t,{once:!0});var e=a.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():d(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){d(a.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}})(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-06-14T14:25:34-07:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.2.1.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: rgb(63.8602040816, 154.5602040816, 162.8897959184);--theme-color: rgb(25,55,71);--dark-mode-body-bg: hsl(200.8695652174, 5.9895833333%, 17.5%);--dark-mode-border-color: hsl(200.8695652174, 5.9895833333%, 22.5%)}
+</style>
+
+
+<!--<![endif]-->
+
+
+<!-- Add HTML tags here to be included in the head. You can delete the below: -->
+<link rel="dns-prefetch" href="https://assets.gumroad.com">
+<script type="module">
+  const loadJS = x => new Promise(r => window.loadJS(x).addEventListener('load', r));
+
+  let p1, p2, io1, io2, embedCreated, overlayCreated;
+  document.querySelector('hy-push-state').addEventListener('load', () => {
+    io1 ||= new IntersectionObserver(async (entries) => {
+      if (entries.some(x => x.isIntersecting)) {
+        p1 = p1 || loadJS('https://gumroad.com/js/gumroad-embed.js');
+        await p1;
+        !embedCreated && await new Promise(function check1(res) {
+          if (typeof createGumroadEmbed !== 'undefined')  {
+            embedCreated = 1;
+            res(createGumroadEmbed());
+          }
+          else setTimeout(() => check1(res), 200);
+        });
+        await new Promise(function check2(res) {
+          if (typeof GumroadEmbed !== 'undefined') res(GumroadEmbed.reload());
+          else setTimeout(() => check2(res), 200);
+        });
+      }
+    }, { rootMargin: '1440px' });
+
+    io2 ||= new IntersectionObserver(async (entries) => {
+      if (entries.some(x => x.isIntersecting)) {
+        p2 = p2 || loadJS('https://gumroad.com/js/gumroad.js');
+        await p2;
+        !overlayCreated && await new Promise(function check(res) {
+          if (typeof createGumroadOverlay !== 'undefined') {
+            overlayCreated = 1;
+            res(createGumroadOverlay());
+          }
+          else setTimeout(() => check(res), 200);
+        });
+      }
+    }, { rootMargin: '300px' });
+
+    document.querySelectorAll('.gumroad-product-embed').forEach(el => io1.observe(el));
+    document.querySelectorAll('.gumroad-button').forEach(el => io2.observe(el));
+  });
+</script>
+
+
+</head>
+
+<body class="no-break-layout">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  ((e,s)=>{var d="light-mode",a="dark-mode",o=(new Date).getHours();"matchMedia"in e&&e.matchMedia("(prefers-color-scheme)")||(e=(o=o<=e._sunrise||o>=e._sunset?a:d)==a?d:a,s.body.classList.add(o),s.body.classList.remove(e))})(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/blog/">blog</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-06-14-2025-06-14-protohackers-01</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-blog-2025-06-14-protohackers-01" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        Protohackers Challenge 01: Prime Time in Rust
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-06-14T14:25:34-07:00">14 Jun 2025</time> in <span>Blog</span> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  
+    <h2 id="problem-statement"><a href="https://protohackers.com/problem/1">Problem Statement</a></h2>
+
+<p>In simple words, receive JSON objects, check fields, return a response. Ok, I can do that!</p>
+
+<h2 id="solving-the-task">Solving the Task</h2>
+
+<p>Let’s start with some imports of what we’ll be using.</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">tokio</span><span class="p">::</span><span class="nn">net</span><span class="p">::{</span><span class="n">TcpListener</span><span class="p">,</span> <span class="n">TcpStream</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">tokio</span><span class="p">::</span><span class="nn">io</span><span class="p">::{</span><span class="n">BufReader</span><span class="p">,</span> <span class="n">AsyncBufReadExt</span><span class="p">,</span> <span class="n">AsyncWriteExt</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">serde</span><span class="p">::{</span><span class="n">Deserialize</span><span class="p">,</span> <span class="n">Serialize</span><span class="p">};</span>
+</code></pre></div></div>
+
+<p>We’re using <code class="language-plaintext highlighter-rouge">tokio</code> for async runtimes and networking, then <code class="language-plaintext highlighter-rouge">serde</code> for JSON <strong>Ser</strong>ialization and <strong>De</strong>serialization.</p>
+
+<p>Let’s first begin by defining what a <code class="language-plaintext highlighter-rouge">request</code> and <code class="language-plaintext highlighter-rouge">response</code> is:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">#[derive(Debug,</span> <span class="nd">Serialize,</span> <span class="nd">Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Request</span> <span class="p">{</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">number</span><span class="p">:</span> <span class="nb">f64</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nd">#[derive(Debug,</span> <span class="nd">Serialize,</span> <span class="nd">Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Response</span> <span class="p">{</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">prime</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nd">#[derive(Debug)]</span>
+<span class="k">enum</span> <span class="n">Answer</span> <span class="p">{</span>
+    <span class="n">Malformed</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>A <code class="language-plaintext highlighter-rouge">Request</code> is a <code class="language-plaintext highlighter-rouge">struct</code> with a <code class="language-plaintext highlighter-rouge">method</code> (a <code class="language-plaintext highlighter-rouge">String</code>) and a <code class="language-plaintext highlighter-rouge">number</code> (an <code class="language-plaintext highlighter-rouge">f64</code>), as defined in the problem statement</p>
+  </li>
+  <li>
+    <p>A <code class="language-plaintext highlighter-rouge">Response</code> is a <code class="language-plaintext highlighter-rouge">struct</code> with a <code class="language-plaintext highlighter-rouge">method</code> (a <code class="language-plaintext highlighter-rouge">String</code>) and a <code class="language-plaintext highlighter-rouge">prime</code> (a <code class="language-plaintext highlighter-rouge">bool</code>), as defined in the problem statement as well.</p>
+  </li>
+  <li>
+    <p>The problem statement also defined three types of answers: Correct (a normal response), Malformed (a malformed response), and Incorrect (a normal response with incorrect contents). Although it would be more idiomatic, I decided to simply ignore the first and last. In fact, you don’t even need to define any of the answer types in your code, you can just execute what the problem wants to you do without definition.</p>
+  </li>
+</ul>
+
+<p>Now let’s take a look at our driver function:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">async</span> <span class="k">fn</span> <span class="nf">run</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">listener</span> <span class="o">=</span> <span class="nn">TcpListener</span><span class="p">::</span><span class="nf">bind</span><span class="p">(</span><span class="s">"0.0.0.0:4040"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Server listening port 0.0.0.0:4040"</span><span class="p">);</span>
+
+    <span class="k">loop</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span> <span class="o">=</span> <span class="n">listener</span><span class="nf">.accept</span><span class="p">()</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"New connection from {}"</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+
+        <span class="nn">tokio</span><span class="p">::</span><span class="nf">spawn</span><span class="p">(</span><span class="k">async</span> <span class="k">move</span> <span class="p">{</span>
+            <span class="c1">// Wrap socket in BufReader for line by line reading</span>
+            <span class="k">let</span> <span class="k">mut</span> <span class="n">reader</span> <span class="o">=</span> <span class="nn">BufReader</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">socket</span><span class="p">);</span>
+            <span class="k">let</span> <span class="k">mut</span> <span class="n">line</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+            <span class="k">loop</span> <span class="p">{</span>
+                <span class="n">line</span><span class="nf">.clear</span><span class="p">();</span>
+
+                <span class="k">let</span> <span class="n">_bytes_read</span> <span class="o">=</span> <span class="k">match</span> <span class="n">reader</span><span class="nf">.read_line</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">line</span><span class="p">)</span><span class="k">.await</span> <span class="p">{</span>
+                    <span class="nf">Ok</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+                        <span class="nd">println!</span><span class="p">(</span><span class="s">"Connection closed by client"</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="nf">Ok</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="p">,</span>
+                    <span class="nf">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+                        <span class="nd">eprintln!</span><span class="p">(</span><span class="s">"read error: {:?}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">};</span>
+
+                <span class="c1">// Trim whitespace and newline</span>
+                <span class="k">let</span> <span class="n">trimmed</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.trim_end</span><span class="p">();</span>
+
+                <span class="c1">// Handle the request, pass mutable TcpStream (unwrap from BufReader)</span>
+                <span class="k">let</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">reader</span><span class="nf">.get_mut</span><span class="p">();</span>
+
+                <span class="k">if</span> <span class="k">let</span> <span class="nf">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=</span> <span class="nf">handle_request</span><span class="p">(</span><span class="n">trimmed</span><span class="nf">.as_bytes</span><span class="p">(),</span> <span class="n">stream</span><span class="p">)</span><span class="k">.await</span> <span class="p">{</span>
+                    <span class="nd">eprintln!</span><span class="p">(</span><span class="s">"Request error: {:?}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+                    <span class="c1">// Malformed request -&gt; disconnect client</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I’m sure the comments explain enough here, so if you understand this code you can skip this explanation. Although, there is a very important part (starting after the second point).</p>
+
+<ul>
+  <li>
+    <p>We begin by defining our <code class="language-plaintext highlighter-rouge">listener</code> (like Problem 00) and binding to <code class="language-plaintext highlighter-rouge">0.0.0.0:4040</code> under an <code class="language-plaintext highlighter-rouge">async</code> runtime.</p>
+  </li>
+  <li>
+    <p>Then, we <code class="language-plaintext highlighter-rouge">loop</code> until the server is closed. Under this first <code class="language-plaintext highlighter-rouge">loop</code>, we <code class="language-plaintext highlighter-rouge">accept()</code> a stream under <code class="language-plaintext highlighter-rouge">listener</code> which includes a <code class="language-plaintext highlighter-rouge">socket</code> and an <code class="language-plaintext highlighter-rouge">addr</code>. Now here’s a real important part.</p>
+  </li>
+</ul>
+
+<h3 id="i-screwed-up">I Screwed Up</h3>
+
+<p>I first began this implementation using Rust’s native <code class="language-plaintext highlighter-rouge">thread::spawn</code>. Now, running this in an async runtime with a small amount of input is fine, but handling 1000s of simultaneous requests gets real messy real fast. I later switched to <code class="language-plaintext highlighter-rouge">tokio::spawn</code>.</p>
+
+<p>Why? Well, for starters, <code class="language-plaintext highlighter-rouge">thread::spawn</code> isn’t free. Every time you use it, you’re spinning up a full OS thread, with each thread taking a decent chunk of memory (stack space), and the kernel has to schedule every thread independently. On paper, that sounds okay… until you try to handle simultaneous clients, each sending 1000s of messages, and suddenly your little 2 GB / 1vCPU VPS starts sweating a little (and by little I mean a lot).</p>
+
+<p>On this setup, you’re not getting a whole lot of thread performance. You’re getting a <em>traffic jam</em>. Long story short, server kind of died and I had to do a little recovery debugging.</p>
+
+<p>Meanwhile, <code class="language-plaintext highlighter-rouge">tokio::spawn</code> is built for this. It runs on a small pool of async workers that cooperate instead of compete. Instead of whatever living hell <code class="language-plaintext highlighter-rouge">thread::spawn</code> is, you get lightweight tasks that sleep and wake <em>efficiently</em>. They’re stackless, don’t eat up memory, and don’t trigger the kernel to context switch every time one of them blinks.</p>
+
+<h3 id="back-to-explaining-code">Back to Explaining Code</h3>
+
+<ul>
+  <li>
+    <p>Using <code class="language-plaintext highlighter-rouge">tokio::spawn(async move {</code>, we start a new async task (not a system thread) to keep things lightweight and non-blocking.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">async move</code> captures the <code class="language-plaintext highlighter-rouge">socket</code> by value and runs it in a separate task. Noe need to worry about lifetimes or thread safety. The task owns its own data.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let mut reader = BufReader::new(socket);</code> wraps the raw <code class="language-plaintext highlighter-rouge">TcpStream</code> in a <code class="language-plaintext highlighter-rouge">BufReader</code> so we can read line by line instead of by byte or chunk. Why? Because the Protohackers protocol uses newline delimited JSON. Reading lines keep parsing sne and avoids awkward partial reads.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let mut line = String::new()</code> is our buffer for incoming lines. We are reusing the same <code class="language-plaintext highlighter-rouge">String</code> every loop iteration to avoid allocating repeatedly.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">loop { line.clear();</code> is the core of the connection handler: we enter a loop to continuously read and process lines from the client. We <code class="language-plaintext highlighter-rouge">.clear()</code> the buffer to reuse it for the next read (no unnecessary heap allocations),</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let _bytes_read = match reader.read_line(&amp;mut line).await {</code> awaits a line of input from the client, then <code class="language-plaintext highlighter-rouge">read_line</code> returns the number of bytes read. If it’s <code class="language-plaintext highlighter-rouge">0</code>, that means the client closed the connection (this would be `Ok(0) =&gt; { return ;});</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Ok(n) =&gt; n</code> and <code class="language-plaintext highlighter-rouge">Err(e) =&gt; { return; }</code> are our next two branches. If we read successfully, we proceed. If something goes wrong, log the error and bail.</p>
+  </li>
+</ul>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">trimmed</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.trim_end</span><span class="p">();</span>
+<span class="k">let</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">reader</span><span class="nf">.get_mut</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Clean the line then grab a mutable reference to the original <code class="language-plaintext highlighter-rouge">TcpStream</code> from the <code class="language-plaintext highlighter-rouge">BufReader</code>. This is necessary because we want to write out response directly back to the socket, and <code class="language-plaintext highlighter-rouge">BufReader</code> only wraps the read half.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">if let Err(e) = handle_request(trimmed.as_bytes(), stream).await {</code> calls our async <code class="language-plaintext highlighter-rouge">handle_request</code> function, which takes the raw bytes and a writable stream. If <code class="language-plaintext highlighter-rouge">handle_request</code> returns an error, it’s probably due to bad input – time to close the connection.</p>
+  </li>
+</ul>
+
+<p>The following code for handling client requests is relatively simple, so I’ve added comments which I hope will suffice:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">fn</span> <span class="nf">handle_request</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">],</span> <span class="n">stream</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">TcpStream</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// Convert bytes to &amp;str</span>
+    <span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">std</span><span class="p">::</span><span class="nn">str</span><span class="p">::</span><span class="nf">from_utf8</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="p">,</span>
+        <span class="nf">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Send malformed response with newline and return error to close connection</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"{</span><span class="se">\"</span><span class="s">answer</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">Malformed</span><span class="se">\"</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nf">Err</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">Error</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">ErrorKind</span><span class="p">::</span><span class="n">InvalidData</span><span class="p">,</span> <span class="s">"Invalid UTF-8"</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="k">match</span> <span class="nf">parse_request</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">Ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Write response followed by newline</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="n">response</span><span class="nf">.as_bytes</span><span class="p">())</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="nf">Ok</span><span class="p">(())</span>
+        <span class="p">}</span>
+        <span class="nf">Err</span><span class="p">(</span><span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Malformed response, then close connection</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"{</span><span class="se">\"</span><span class="s">answer</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">Malformed</span><span class="se">\"</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="nf">Err</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">Error</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">ErrorKind</span><span class="p">::</span><span class="n">InvalidData</span><span class="p">,</span> <span class="s">"Malformed request"</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">parse_request</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="n">Answer</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// Parse JSON request</span>
+    <span class="k">let</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span> <span class="o">=</span> <span class="nn">serde_json</span><span class="p">::</span><span class="nf">from_str</span><span class="p">(</span><span class="n">input</span><span class="p">)</span><span class="nf">.map_err</span><span class="p">(|</span><span class="n">_</span><span class="p">|</span> <span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+
+    <span class="c1">// Check required fields: method == "isPrime", number is a number (any JSON number, floating point allowed)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="py">.method</span> <span class="o">!=</span> <span class="s">"isPrime"</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">Err</span><span class="p">(</span><span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// According to spec: non-integers cannot be prime, so prime = false if fractional part != 0</span>
+    <span class="k">let</span> <span class="n">is_prime_result</span> <span class="o">=</span> <span class="k">if</span> <span class="n">request</span><span class="py">.number</span><span class="nf">.fract</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="p">{</span>
+        <span class="k">false</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">is_prime</span><span class="p">(</span><span class="n">request</span><span class="py">.number</span> <span class="k">as</span> <span class="nb">u64</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="k">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span> <span class="p">{</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">request</span><span class="py">.method</span><span class="p">,</span>
+        <span class="n">prime</span><span class="p">:</span> <span class="n">is_prime_result</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Serialize response JSON string</span>
+    <span class="nn">serde_json</span><span class="p">::</span><span class="nf">to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">response</span><span class="p">)</span><span class="nf">.map_err</span><span class="p">(|</span><span class="n">_</span><span class="p">|</span> <span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">u64</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">let</span> <span class="n">sqrt_n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="k">as</span> <span class="nb">f64</span><span class="p">)</span><span class="nf">.sqrt</span><span class="p">()</span> <span class="k">as</span> <span class="nb">u64</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="mi">3</span><span class="o">..=</span><span class="n">sqrt_n</span><span class="p">)</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And that’s a wrap! Let’s see how it performs.</p>
+
+<h2 id="results">Results</h2>
+
+<p><img src="/assets/protohackers/1-result.png" alt="01 Result" /></p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/parallaxes_pfp.png"
+    srcset="https://via.placeholder.com/128x128 1x,/assets/img/parallaxes_pfp.png 2x"
+    
+  
+  alt="Lucas Masterson"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <p>I like Rust.</p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Parallaxes" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/blog/2025-06-14-2025-06-11-protohackers-00/" class="flip-title"><span>Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean</span></a>  <time class="faded fine" datetime="2025-06-14T14:25:34-07:00">14 Jun 2025</time></li>                        <li class="h4">  <a href="/blog/2025-06-09-nsa-backdoor-rsa/" class="flip-title"><span>How the NSA Probably Backdoored RSA</span></a>  <time class="faded fine" datetime="2025-06-09T00:00:00-07:00">09 Jun 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2024. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.2.1</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/sidebar.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img_icon.png" class="avatar" alt="Mataiodoxia" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">Mataiodoxia</h2></a>
+    
+    
+      <p class="">
+        A personal blog site for code, math, and privacy.
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/blog/"
+          class="sidebar-nav-item "
+          
+        >
+          Blog
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/docs/"
+          class="sidebar-nav-item "
+          
+        >
+          Documentation
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Parallaxes" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>(()=>{var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())})();
+</script>
+  <script src="/assets/js/hydejack-9.2.1.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.2.1.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+</div>
+
+
+</body>
+</html>

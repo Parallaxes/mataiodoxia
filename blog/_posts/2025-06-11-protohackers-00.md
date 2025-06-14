@@ -13,7 +13,7 @@ categories: [rust, protohackers]
 ## [Problem Statement](https://protohackers.com/problem/0)
 
 <blockquote>
-0: Smoke Test
+0: Smoke Test <br><br>
 
 Deep inside Initrode Global's enterprise management framework lies a component that writes data to a server and expects to read the same data back. (Think of it as a kind of distributed system delay-line memory). We need you to write the server to echo the data back. <br><br>
 

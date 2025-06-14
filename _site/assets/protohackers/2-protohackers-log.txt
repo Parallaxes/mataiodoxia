@@ -1,0 +1,29 @@
+[Sat Jun 14 20:48:11 2025 UTC] [0example.test] NOTE:check starts
+[Sat Jun 14 20:48:11 2025 UTC] [0example.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:11 2025 UTC] [0example.test] NOTE:sending example data
+[Sat Jun 14 20:48:13 2025 UTC] [0example.test] PASS
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:check starts
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:4 simultaneous clients
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:14 2025 UTC] [1main.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:20 2025 UTC] [1main.test] PASS
+[Sat Jun 14 20:48:21 2025 UTC] [2largedata.test] NOTE:check starts
+[Sat Jun 14 20:48:21 2025 UTC] [2largedata.test] NOTE:inserting 200k prices in random order
+[Sat Jun 14 20:48:22 2025 UTC] [2largedata.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:24 2025 UTC] [2largedata.test] PASS
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:check starts
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:checking whether bad clients can disrupt good clients
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:sending an incomplete message
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:sending an illegal message type
+[Sat Jun 14 20:48:26 2025 UTC] [3badclient.test] NOTE:disconnecting immediately after sending a query
+[Sat Jun 14 20:48:27 2025 UTC] [3badclient.test] PASS
+[Sat Jun 14 20:48:28 2025 UTC] [4intoverflow.test] NOTE:check starts
+[Sat Jun 14 20:48:28 2025 UTC] [4intoverflow.test] NOTE:testing for integer overflow
+[Sat Jun 14 20:48:28 2025 UTC] [4intoverflow.test] NOTE:connected to 24.144.82.153 port 4040
+[Sat Jun 14 20:48:28 2025 UTC] [4intoverflow.test] PASS

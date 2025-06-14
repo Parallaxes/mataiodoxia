@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-06-13T13:02:37-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mataiodoxia</title><subtitle>A personal blog site for code, math, and privacy.
-</subtitle><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><entry><title type="html">Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean</title><link href="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/" rel="alternate" type="text/html" title="Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean" /><published>2025-06-13T13:02:37-07:00</published><updated>2025-06-13T12:57:20-07:00</updated><id>http://localhost:4000/blog/2025-06-11-protohackers-00</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-13-2025-06-11-protohackers-00/"><![CDATA[<h2 id="problem-statement"><a href="https://protohackers.com/problem/0">Problem Statement</a></h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-06-14T14:25:34-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mataiodoxia</title><subtitle>A personal blog site for code, math, and privacy.
+</subtitle><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><entry><title type="html">Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean</title><link href="http://localhost:4000/blog/2025-06-14-2025-06-11-protohackers-00/" rel="alternate" type="text/html" title="Protohackers Challenge 00: Smoke Test in Rust and Setting up DigitalOcean" /><published>2025-06-14T14:25:34-07:00</published><updated>2025-06-13T12:57:20-07:00</updated><id>http://localhost:4000/blog/2025-06-11-protohackers-00</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-14-2025-06-11-protohackers-00/"><![CDATA[<h2 id="problem-statement"><a href="https://protohackers.com/problem/0">Problem Statement</a></h2>
 
 <blockquote>
-0: Smoke Test
+0: Smoke Test <br /><br />
 
 Deep inside Initrode Global's enterprise management framework lies a component that writes data to a server and expects to read the same data back. (Think of it as a kind of distributed system delay-line memory). We need you to write the server to echo the data back. <br /><br />
 
@@ -207,7 +207,238 @@ Connection close
 Connection close
 </span></code></pre></div></div>
 
-<p><img src="/assets/img/protohackers-0-results.png" alt="Protohackers Results 0: PASS" /></p>]]></content><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><category term="blog" /><summary type="html"><![CDATA[Problem Statement]]></summary></entry><entry><title type="html">How the NSA Probably Backdoored RSA</title><link href="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/" rel="alternate" type="text/html" title="How the NSA Probably Backdoored RSA" /><published>2025-06-09T00:00:00-07:00</published><updated>2025-06-09T14:04:17-07:00</updated><id>http://localhost:4000/blog/nsa-backdoor-rsa</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/"><![CDATA[<blockquote>
+<p><img src="/assets/img/protohackers-0-results.png" alt="Protohackers Results 0: PASS" /></p>]]></content><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><category term="blog" /><summary type="html"><![CDATA[Problem Statement]]></summary></entry><entry><title type="html">Protohackers Challenge 01: Prime Time in Rust</title><link href="http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/" rel="alternate" type="text/html" title="Protohackers Challenge 01: Prime Time in Rust" /><published>2025-06-14T14:25:34-07:00</published><updated>2025-06-14T14:25:28-07:00</updated><id>http://localhost:4000/blog/2025-06-14-protohackers-01</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-14-2025-06-14-protohackers-01/"><![CDATA[<h2 id="problem-statement"><a href="https://protohackers.com/problem/1">Problem Statement</a></h2>
+
+<p>In simple words, receive JSON objects, check fields, return a response. Ok, I can do that!</p>
+
+<h2 id="solving-the-task">Solving the Task</h2>
+
+<p>Let’s start with some imports of what we’ll be using.</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">tokio</span><span class="p">::</span><span class="nn">net</span><span class="p">::{</span><span class="n">TcpListener</span><span class="p">,</span> <span class="n">TcpStream</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">tokio</span><span class="p">::</span><span class="nn">io</span><span class="p">::{</span><span class="n">BufReader</span><span class="p">,</span> <span class="n">AsyncBufReadExt</span><span class="p">,</span> <span class="n">AsyncWriteExt</span><span class="p">};</span>
+<span class="k">use</span> <span class="nn">serde</span><span class="p">::{</span><span class="n">Deserialize</span><span class="p">,</span> <span class="n">Serialize</span><span class="p">};</span>
+</code></pre></div></div>
+
+<p>We’re using <code class="language-plaintext highlighter-rouge">tokio</code> for async runtimes and networking, then <code class="language-plaintext highlighter-rouge">serde</code> for JSON <strong>Ser</strong>ialization and <strong>De</strong>serialization.</p>
+
+<p>Let’s first begin by defining what a <code class="language-plaintext highlighter-rouge">request</code> and <code class="language-plaintext highlighter-rouge">response</code> is:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">#[derive(Debug,</span> <span class="nd">Serialize,</span> <span class="nd">Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Request</span> <span class="p">{</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">number</span><span class="p">:</span> <span class="nb">f64</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nd">#[derive(Debug,</span> <span class="nd">Serialize,</span> <span class="nd">Deserialize)]</span>
+<span class="k">struct</span> <span class="n">Response</span> <span class="p">{</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="n">prime</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nd">#[derive(Debug)]</span>
+<span class="k">enum</span> <span class="n">Answer</span> <span class="p">{</span>
+    <span class="n">Malformed</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>A <code class="language-plaintext highlighter-rouge">Request</code> is a <code class="language-plaintext highlighter-rouge">struct</code> with a <code class="language-plaintext highlighter-rouge">method</code> (a <code class="language-plaintext highlighter-rouge">String</code>) and a <code class="language-plaintext highlighter-rouge">number</code> (an <code class="language-plaintext highlighter-rouge">f64</code>), as defined in the problem statement</p>
+  </li>
+  <li>
+    <p>A <code class="language-plaintext highlighter-rouge">Response</code> is a <code class="language-plaintext highlighter-rouge">struct</code> with a <code class="language-plaintext highlighter-rouge">method</code> (a <code class="language-plaintext highlighter-rouge">String</code>) and a <code class="language-plaintext highlighter-rouge">prime</code> (a <code class="language-plaintext highlighter-rouge">bool</code>), as defined in the problem statement as well.</p>
+  </li>
+  <li>
+    <p>The problem statement also defined three types of answers: Correct (a normal response), Malformed (a malformed response), and Incorrect (a normal response with incorrect contents). Although it would be more idiomatic, I decided to simply ignore the first and last. In fact, you don’t even need to define any of the answer types in your code, you can just execute what the problem wants to you do without definition.</p>
+  </li>
+</ul>
+
+<p>Now let’s take a look at our driver function:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">async</span> <span class="k">fn</span> <span class="nf">run</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">listener</span> <span class="o">=</span> <span class="nn">TcpListener</span><span class="p">::</span><span class="nf">bind</span><span class="p">(</span><span class="s">"0.0.0.0:4040"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Server listening port 0.0.0.0:4040"</span><span class="p">);</span>
+
+    <span class="k">loop</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span> <span class="o">=</span> <span class="n">listener</span><span class="nf">.accept</span><span class="p">()</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"New connection from {}"</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+
+        <span class="nn">tokio</span><span class="p">::</span><span class="nf">spawn</span><span class="p">(</span><span class="k">async</span> <span class="k">move</span> <span class="p">{</span>
+            <span class="c1">// Wrap socket in BufReader for line by line reading</span>
+            <span class="k">let</span> <span class="k">mut</span> <span class="n">reader</span> <span class="o">=</span> <span class="nn">BufReader</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="n">socket</span><span class="p">);</span>
+            <span class="k">let</span> <span class="k">mut</span> <span class="n">line</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+            <span class="k">loop</span> <span class="p">{</span>
+                <span class="n">line</span><span class="nf">.clear</span><span class="p">();</span>
+
+                <span class="k">let</span> <span class="n">_bytes_read</span> <span class="o">=</span> <span class="k">match</span> <span class="n">reader</span><span class="nf">.read_line</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">line</span><span class="p">)</span><span class="k">.await</span> <span class="p">{</span>
+                    <span class="nf">Ok</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+                        <span class="nd">println!</span><span class="p">(</span><span class="s">"Connection closed by client"</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="nf">Ok</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">n</span><span class="p">,</span>
+                    <span class="nf">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+                        <span class="nd">eprintln!</span><span class="p">(</span><span class="s">"read error: {:?}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">};</span>
+
+                <span class="c1">// Trim whitespace and newline</span>
+                <span class="k">let</span> <span class="n">trimmed</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.trim_end</span><span class="p">();</span>
+
+                <span class="c1">// Handle the request, pass mutable TcpStream (unwrap from BufReader)</span>
+                <span class="k">let</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">reader</span><span class="nf">.get_mut</span><span class="p">();</span>
+
+                <span class="k">if</span> <span class="k">let</span> <span class="nf">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=</span> <span class="nf">handle_request</span><span class="p">(</span><span class="n">trimmed</span><span class="nf">.as_bytes</span><span class="p">(),</span> <span class="n">stream</span><span class="p">)</span><span class="k">.await</span> <span class="p">{</span>
+                    <span class="nd">eprintln!</span><span class="p">(</span><span class="s">"Request error: {:?}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+                    <span class="c1">// Malformed request -&gt; disconnect client</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I’m sure the comments explain enough here, so if you understand this code you can skip this explanation. Although, there is a very important part (starting after the second point).</p>
+
+<ul>
+  <li>
+    <p>We begin by defining our <code class="language-plaintext highlighter-rouge">listener</code> (like Problem 00) and binding to <code class="language-plaintext highlighter-rouge">0.0.0.0:4040</code> under an <code class="language-plaintext highlighter-rouge">async</code> runtime.</p>
+  </li>
+  <li>
+    <p>Then, we <code class="language-plaintext highlighter-rouge">loop</code> until the server is closed. Under this first <code class="language-plaintext highlighter-rouge">loop</code>, we <code class="language-plaintext highlighter-rouge">accept()</code> a stream under <code class="language-plaintext highlighter-rouge">listener</code> which includes a <code class="language-plaintext highlighter-rouge">socket</code> and an <code class="language-plaintext highlighter-rouge">addr</code>. Now here’s a real important part.</p>
+  </li>
+</ul>
+
+<h3 id="i-screwed-up">I Screwed Up</h3>
+
+<p>I first began this implementation using Rust’s native <code class="language-plaintext highlighter-rouge">thread::spawn</code>. Now, running this in an async runtime with a small amount of input is fine, but handling 1000s of simultaneous requests gets real messy real fast. I later switched to <code class="language-plaintext highlighter-rouge">tokio::spawn</code>.</p>
+
+<p>Why? Well, for starters, <code class="language-plaintext highlighter-rouge">thread::spawn</code> isn’t free. Every time you use it, you’re spinning up a full OS thread, with each thread taking a decent chunk of memory (stack space), and the kernel has to schedule every thread independently. On paper, that sounds okay… until you try to handle simultaneous clients, each sending 1000s of messages, and suddenly your little 2 GB / 1vCPU VPS starts sweating a little (and by little I mean a lot).</p>
+
+<p>On this setup, you’re not getting a whole lot of thread performance. You’re getting a <em>traffic jam</em>. Long story short, server kind of died and I had to do a little recovery debugging.</p>
+
+<p>Meanwhile, <code class="language-plaintext highlighter-rouge">tokio::spawn</code> is built for this. It runs on a small pool of async workers that cooperate instead of compete. Instead of whatever living hell <code class="language-plaintext highlighter-rouge">thread::spawn</code> is, you get lightweight tasks that sleep and wake <em>efficiently</em>. They’re stackless, don’t eat up memory, and don’t trigger the kernel to context switch every time one of them blinks.</p>
+
+<h3 id="back-to-explaining-code">Back to Explaining Code</h3>
+
+<ul>
+  <li>
+    <p>Using <code class="language-plaintext highlighter-rouge">tokio::spawn(async move {</code>, we start a new async task (not a system thread) to keep things lightweight and non-blocking.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">async move</code> captures the <code class="language-plaintext highlighter-rouge">socket</code> by value and runs it in a separate task. Noe need to worry about lifetimes or thread safety. The task owns its own data.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let mut reader = BufReader::new(socket);</code> wraps the raw <code class="language-plaintext highlighter-rouge">TcpStream</code> in a <code class="language-plaintext highlighter-rouge">BufReader</code> so we can read line by line instead of by byte or chunk. Why? Because the Protohackers protocol uses newline delimited JSON. Reading lines keep parsing sne and avoids awkward partial reads.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let mut line = String::new()</code> is our buffer for incoming lines. We are reusing the same <code class="language-plaintext highlighter-rouge">String</code> every loop iteration to avoid allocating repeatedly.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">loop { line.clear();</code> is the core of the connection handler: we enter a loop to continuously read and process lines from the client. We <code class="language-plaintext highlighter-rouge">.clear()</code> the buffer to reuse it for the next read (no unnecessary heap allocations),</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">let _bytes_read = match reader.read_line(&amp;mut line).await {</code> awaits a line of input from the client, then <code class="language-plaintext highlighter-rouge">read_line</code> returns the number of bytes read. If it’s <code class="language-plaintext highlighter-rouge">0</code>, that means the client closed the connection (this would be `Ok(0) =&gt; { return ;});</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Ok(n) =&gt; n</code> and <code class="language-plaintext highlighter-rouge">Err(e) =&gt; { return; }</code> are our next two branches. If we read successfully, we proceed. If something goes wrong, log the error and bail.</p>
+  </li>
+</ul>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">trimmed</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.trim_end</span><span class="p">();</span>
+<span class="k">let</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">reader</span><span class="nf">.get_mut</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Clean the line then grab a mutable reference to the original <code class="language-plaintext highlighter-rouge">TcpStream</code> from the <code class="language-plaintext highlighter-rouge">BufReader</code>. This is necessary because we want to write out response directly back to the socket, and <code class="language-plaintext highlighter-rouge">BufReader</code> only wraps the read half.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">if let Err(e) = handle_request(trimmed.as_bytes(), stream).await {</code> calls our async <code class="language-plaintext highlighter-rouge">handle_request</code> function, which takes the raw bytes and a writable stream. If <code class="language-plaintext highlighter-rouge">handle_request</code> returns an error, it’s probably due to bad input – time to close the connection.</p>
+  </li>
+</ul>
+
+<p>The following code for handling client requests is relatively simple, so I’ve added comments which I hope will suffice:</p>
+
+<div class="language-rs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">fn</span> <span class="nf">handle_request</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">],</span> <span class="n">stream</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">TcpStream</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// Convert bytes to &amp;str</span>
+    <span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="k">match</span> <span class="nn">std</span><span class="p">::</span><span class="nn">str</span><span class="p">::</span><span class="nf">from_utf8</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="p">,</span>
+        <span class="nf">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Send malformed response with newline and return error to close connection</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"{</span><span class="se">\"</span><span class="s">answer</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">Malformed</span><span class="se">\"</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nf">Err</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">Error</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">ErrorKind</span><span class="p">::</span><span class="n">InvalidData</span><span class="p">,</span> <span class="s">"Invalid UTF-8"</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="k">match</span> <span class="nf">parse_request</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">Ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Write response followed by newline</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="n">response</span><span class="nf">.as_bytes</span><span class="p">())</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="nf">Ok</span><span class="p">(())</span>
+        <span class="p">}</span>
+        <span class="nf">Err</span><span class="p">(</span><span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// Malformed response, then close connection</span>
+            <span class="n">stream</span><span class="nf">.write_all</span><span class="p">(</span><span class="s">b"{</span><span class="se">\"</span><span class="s">answer</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">Malformed</span><span class="se">\"</span><span class="s">}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="k">.await</span><span class="o">?</span><span class="p">;</span>
+            <span class="nf">Err</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">Error</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="nn">std</span><span class="p">::</span><span class="nn">io</span><span class="p">::</span><span class="nn">ErrorKind</span><span class="p">::</span><span class="n">InvalidData</span><span class="p">,</span> <span class="s">"Malformed request"</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">parse_request</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="n">Answer</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// Parse JSON request</span>
+    <span class="k">let</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span> <span class="o">=</span> <span class="nn">serde_json</span><span class="p">::</span><span class="nf">from_str</span><span class="p">(</span><span class="n">input</span><span class="p">)</span><span class="nf">.map_err</span><span class="p">(|</span><span class="n">_</span><span class="p">|</span> <span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+
+    <span class="c1">// Check required fields: method == "isPrime", number is a number (any JSON number, floating point allowed)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="py">.method</span> <span class="o">!=</span> <span class="s">"isPrime"</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">Err</span><span class="p">(</span><span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// According to spec: non-integers cannot be prime, so prime = false if fractional part != 0</span>
+    <span class="k">let</span> <span class="n">is_prime_result</span> <span class="o">=</span> <span class="k">if</span> <span class="n">request</span><span class="py">.number</span><span class="nf">.fract</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="p">{</span>
+        <span class="k">false</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">is_prime</span><span class="p">(</span><span class="n">request</span><span class="py">.number</span> <span class="k">as</span> <span class="nb">u64</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="k">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span> <span class="p">{</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">request</span><span class="py">.method</span><span class="p">,</span>
+        <span class="n">prime</span><span class="p">:</span> <span class="n">is_prime_result</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Serialize response JSON string</span>
+    <span class="nn">serde_json</span><span class="p">::</span><span class="nf">to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">response</span><span class="p">)</span><span class="nf">.map_err</span><span class="p">(|</span><span class="n">_</span><span class="p">|</span> <span class="nn">Answer</span><span class="p">::</span><span class="n">Malformed</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">u64</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">let</span> <span class="n">sqrt_n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="k">as</span> <span class="nb">f64</span><span class="p">)</span><span class="nf">.sqrt</span><span class="p">()</span> <span class="k">as</span> <span class="nb">u64</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="mi">3</span><span class="o">..=</span><span class="n">sqrt_n</span><span class="p">)</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And that’s a wrap! Let’s see how it performs.</p>
+
+<h2 id="results">Results</h2>
+
+<p><img src="/assets/protohackers/1-result.png" alt="01 Result" /></p>]]></content><author><name>Lucas Masterson</name><email>lucasmasterson@protonmail.com</email></author><category term="blog" /><summary type="html"><![CDATA[Problem Statement]]></summary></entry><entry><title type="html">How the NSA Probably Backdoored RSA</title><link href="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/" rel="alternate" type="text/html" title="How the NSA Probably Backdoored RSA" /><published>2025-06-09T00:00:00-07:00</published><updated>2025-06-09T14:04:17-07:00</updated><id>http://localhost:4000/blog/nsa-backdoor-rsa</id><content type="html" xml:base="http://localhost:4000/blog/2025-06-09-nsa-backdoor-rsa/"><![CDATA[<blockquote>
   <p>“Even if you’re not doing anything wrong, you are being watched and recorded.” –Edward J. Snowden</p>
 </blockquote>
 
